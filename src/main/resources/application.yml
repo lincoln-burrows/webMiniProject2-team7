@@ -1,7 +1,7 @@
 cloud:
   aws:
     s3:
-      bucket: bongjin-bucket
+      bucket: miniprojectspring7
     region:
       static: ap-northeast-2
     stack:
