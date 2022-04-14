@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    function login(){
+
+      let username = "cbjjzzang@naver.com"
+      let password = "1234"
+      let data = {'username':username, 'password': password};
+
+      $.ajax({
+        type:"POST",
+        url: "/user/login",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function logout(){
+      $.ajax({
+        type:"POST",
+        url: "/user/logout",
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function auth(){
+      $.ajax({
+        type:"GET",
+        url: "/user/auth",
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function signup(id){
+
+      let username = "cbjjzzang@naver.com"
+      let nickname = "봉봉이2"
+      let password = "1234"
+
+      let data = {'username':username, 'nickname':nickname, 'password': password};
+
+      $.ajax({
+        type:"POST",
+        url: "/api/signup",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function submit(){
+
+      let img = "/asd/ss.jpg";
+      let title = "제목";
+      let content = "내용";
+      let url = "공유주소";
+
+      let data = {'img':img, 'title':title, 'content': content, 'url': url};
+
+      $.ajax({
+        type:"POST",
+        url: "/api/hobby",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function read(){
+
+      $.ajax({
+        type:"GET",
+        url: "/api/hobbies",
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function modify(){
+
+      let img = "/f/1.pg";
+      let title = "수정";
+      let content = "수정";
+      let url = "수정";
+
+      let data = {'img':img, 'title':title, 'content': content, 'url': url};
+
+      $.ajax({
+        type:"PUT",
+        url: '/api/hobby/1',
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+
+    function del(){
+      $.ajax({
+        type:"DELETE",
+        url: '/api/hobby/1',
+        success: function(response){
+          console.log(response)
+        }
+      })
+    }
+  </script>
+
+</head>
+<body>
+<h1>회원가입 테스트 버튼</h1>
+정상 회원가입
+<button onclick="signup(0)">signup</button>
+오류 회원가입
+<button onclick="signup(1)">signup</button>
+<h1>로그인 테스트 버튼</h1>
+오류 로그인
+<button onclick="login(1)">login</button>
+정상 로그인
+<button onclick="login(0)">login</button>
+<br>
+<h1>로그인 유지 확인</h1>
+<button onclick="logout()">로그아웃</button>
+<button onclick="auth()">유지확인</button>
+<br>
+<h1>게시글 등록 확인</h1>
+게시글 등록
+<button onclick="submit()">submit</button>
+게시글 목록조회
+<button onclick="read()">read</button>
+게시글 수정
+<button onclick="modify()">read</button>
+게시글 삭제
+<button onclick="del()">read</button>
+</body>
+</html>
